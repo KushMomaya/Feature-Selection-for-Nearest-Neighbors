@@ -8,16 +8,16 @@ Y = data[:, 0]
 def forward_search(X, Y):
     current_set = []
 
-    for i in range(1, len(X[0]) + 1):
-        print("On the " + str(i) + "th level of the search tree")
+    for i in range(len(X[0])):
+        print("On the " + str(i+1) + "th level of the search tree")
         feature_to_add = None
         best_sofar_accuracy = 0
 
-        for k in range(1, len(X[0]) + 1):
+        for k in range(len(X[0])):
             if k in current_set:
                 continue
 
-            print("Considering adding feature " + str(k))
+            print("Considering adding feature " + str(k+1))
             accuracy = loocv(X, Y, current_set, k)
 
             if accuracy > best_sofar_accuracy:
@@ -25,7 +25,7 @@ def forward_search(X, Y):
                 feature_to_add = k
 
         current_set.append(feature_to_add)
-        print("On level " + str(i) + " I added feature " + str(feature_to_add) + " to the current set")
+        print("On level " + str(i+1) + " I added feature " + str(feature_to_add+1) + " to the current set")
         print("Accuracy is " + str(best_sofar_accuracy))
 
 

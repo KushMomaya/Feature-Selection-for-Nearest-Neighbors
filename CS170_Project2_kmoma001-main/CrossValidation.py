@@ -1,23 +1,23 @@
 import numpy as np
-from NN import *
 
 data = np.loadtxt('../CS170_Small_Data__60.txt')
 X = data[:, 1:]
 Y = data[:, 0]
 
-def loocv(X, Y): #, set, feature):
+def loocv(X, Y, set, feature):
+    newX = X[:, set + [feature]]
     num_correct = 0
     accuracy = 0
-    for i in range(len(X)):
-        point = X[i]
+    for i in range(len(newX)):
+        point = newX[i]
         label = Y[i]
         nn_distance = float('inf')
         nn_location = None
         nn_label = None
-        for k in range(len(X)):
+        for k in range(len(newX)):
             if k == i:
                 continue
-            distance = np.sqrt(np.sum((point - X[k]) ** 2))
+            distance = np.sqrt(np.sum((point - newX[k]) ** 2))
             if distance < nn_distance:
                 nn_distance = distance
                 nn_location = k
@@ -26,8 +26,5 @@ def loocv(X, Y): #, set, feature):
         if label == nn_label:
             num_correct += 1
 
-    accuracy = num_correct / len(X)
+    accuracy = num_correct / len(newX)
     return accuracy
-
-
-print(loocv(X, Y))
