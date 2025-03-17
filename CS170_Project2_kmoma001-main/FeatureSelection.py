@@ -12,7 +12,7 @@ def forward_search(X, Y):
 
     for i in range(1, len(X[0]) + 1):
         print("On the " + str(i) + "th level of the search tree")
-        feature_to_add = []
+        feature_to_add = None
         best_sofar_accuracy = 0
 
         for k in range(1, len(X[0]) + 1):
@@ -28,7 +28,7 @@ def forward_search(X, Y):
 
         current_set.append(feature_to_add)
         print("Added feature " + str(feature_to_add) + " to current set")
-        
+
         if best_sofar_accuracy > best_accuracy:
             best_accuracy = best_sofar_accuracy
             best_set = current_set
