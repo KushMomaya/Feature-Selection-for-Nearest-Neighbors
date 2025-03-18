@@ -1,5 +1,6 @@
 import numpy as np
 from FeatureSelection import *
+import time
 
 def main():
     print("Welcome to Kush Momaya's Feature Selection Algorithm!")
@@ -17,12 +18,14 @@ def main():
     X = data[:, 1:]
     Y = data[:, 0]
 
+    start = time.time()
     if input_algo == '1':
         print("Forward Selection Trace")
         forward_search(X, Y)
     elif input_algo == '2':
         print("Backward Elimination Trace")
         backward_search(X, Y)
-
-
+    end = time.time()
+    print("Time taken to run: " + str(end - start) + " seconds")
+    
 main()

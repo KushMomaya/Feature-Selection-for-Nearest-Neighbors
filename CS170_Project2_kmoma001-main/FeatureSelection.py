@@ -23,7 +23,7 @@ def forward_search(X, Y):
                 continue
 
             print("Considering adding feature " + str(k+1))
-            accuracy = loocv(X, Y, current_set, k)
+            accuracy = round(loocv(X, Y, current_set, k), 4)
 
             if accuracy > best_sofar_accuracy:
                 best_sofar_accuracy = accuracy
