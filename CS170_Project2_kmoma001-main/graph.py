@@ -2,13 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from FeatureSelection import *
 
-data = np.loadtxt('../CS170_Small_Data__60.txt')
+#data = np.loadtxt('../CS170_Small_Data__60.txt')
+data = np.loadtxt('../CS170_Large_Data__96.txt')
 X = data[:, 1:]
 Y = data[:, 0]
 
 def graph_features(X, Y):
     forward_accuracies, forward_features = forward_search(X, Y)
     backward_accuracies, backward_features = backward_search(X, Y)
+    backward_accuracies = backward_accuracies[:3] + backward_accuracies[-3:]
+    backward_features = backward_features[:3] + backward_features[-3:]
 
     plt.figure(figsize=(12, 6))
 
