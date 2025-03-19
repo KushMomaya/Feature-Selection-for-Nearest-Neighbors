@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FeatureSelection import *
+import time
 
 #data = np.loadtxt('../CS170_Small_Data__60.txt')
 data = np.loadtxt('../CS170_Large_Data__96.txt')
@@ -8,8 +9,13 @@ X = data[:, 1:]
 Y = data[:, 0]
 
 def graph_features(X, Y):
+    start = time.time()
     forward_accuracies, forward_features = forward_search(X, Y)
+    end = time.time()
+    print("Time taken to run: " + str(end - start) + " seconds")
     backward_accuracies, backward_features = backward_search(X, Y)
+    forward_accuracies = forward_accuracies[:3] + forward_accuracies[-3:]
+    forward_features = forward_features[:3] + forward_features[-3:]
     backward_accuracies = backward_accuracies[:3] + backward_accuracies[-3:]
     backward_features = backward_features[:3] + backward_features[-3:]
 

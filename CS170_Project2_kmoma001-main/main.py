@@ -17,15 +17,15 @@ def main():
 
     X = data[:, 1:]
     Y = data[:, 0]
-
+    print("This dataset has " + str(len(X[0])) + " features (not including the class attribute), with " + str(len(data)) + " instances")
     start = time.time()
     if input_algo == '1':
-        print("Forward Selection Trace")
+        print("Beginning Search: Forward Selection")
         forward_search(X, Y)
     elif input_algo == '2':
-        print("Backward Elimination Trace")
+        print("Beginning Search: Backward Elimination")
         backward_search(X, Y)
     end = time.time()
-    print("Time taken to run: " + str(end - start) + " seconds")
+    print("Time taken to run: " + str(round(end - start, 2)) + " seconds")
     
 main()
